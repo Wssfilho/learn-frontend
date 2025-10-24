@@ -93,16 +93,8 @@ export default function homepage() {
           onClick={() => { setIsModalOpen(true); }}
         >Adicionar Membro</button>
 
-        
-
+  
         </div>
-        {isModalOpen && (
-          <ModalAddMembro
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            country={countries}
-          />
-        )}
         <table className="mx-auto w-11/12 md:w-3/4 lg:w-2/3 bg-white rounded-2xl shadow-xl border border-gray-200 table-auto border-separate border-spacing-x-6 border-spacing-y-3 text-sm">
           <thead>
             <tr>
@@ -138,6 +130,13 @@ export default function homepage() {
           </tbody>
         </table>
       </div>
+      {isModalOpen && (
+          <ModalAddMembro
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            country={countries}
+          />
+        )}
     </>
   );
 }

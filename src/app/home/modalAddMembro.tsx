@@ -90,7 +90,7 @@ export default function ModalAddMembro({ isOpen, onClose, country}: ModalAddMemb
     return (
         <>
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center animate-slideIn shadow-lg">
+                <div className=" bg-gray-100 fixed inset-0 z-50 flex items-center justify-center animate-slideIn shadow-lg">
                     <div className="bg-white p-6 rounded-lg overflow-y-auto">
                         <h2 className="text-2xl mb-4">Adicionar Membro</h2>
                         <form onSubmit={criarHeroi} className="space-y-4 grid grid-cols-2 gap-4">
