@@ -23,6 +23,16 @@ export default function homepage() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
+    
+    const fetchCountries = async () => {
+      try {
+        const countries = await axios.get('http://localhost:3001/country/');
+        console.log(countries.data);
+        setCountries(countries.data);
+      } catch (error) {
+        console.log('Erro ao buscar países:', error);
+      }
+    };
     const fetchHeroes = async () => {
       try {
         const heros = await axios.get('http://localhost:3001/hero/');
@@ -35,19 +45,6 @@ export default function homepage() {
     };
 
     fetchHeroes();
-
-  }, []);
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const countries = await axios.get('http://localhost:3001/country/');
-        console.log(countries.data);
-        setCountries(countries.data);
-      } catch (error) {
-        console.log('Erro ao buscar países:', error);
-      }
-    };
-
     fetchCountries();
   }, []);
 
@@ -103,6 +100,7 @@ export default function homepage() {
           <ModalAddMembro
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
+            country={countries}
           />
         )}
         <table className="mx-auto w-11/12 md:w-3/4 lg:w-2/3 bg-white rounded-2xl shadow-xl border border-gray-200 table-auto border-separate border-spacing-x-6 border-spacing-y-3 text-sm">
