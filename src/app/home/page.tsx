@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/header";
 import axios from "axios";
 import swal from "sweetalert2";
+import ModalAddMembro from "./modalAddMembro";
 
 interface Hero {
   id: number;
@@ -20,6 +21,7 @@ interface Country {
 export default function homepage() {
   const [herois, setHeroes] = useState<Hero[]>([]); // Inicializar com array vazio
   const [countries, setCountries] = useState<Country[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const fetchHeroes = async () => {
       try {
@@ -89,11 +91,20 @@ export default function homepage() {
       <div>
         <div className="flex justify-between items-center mx-auto w-11/12 md:w-3/4 lg:w-2/3 mt-8 mb-4">
           <h2 className="p-2 text-2xl  ">Heroes</h2>
+
         <button className="bg-green-500 text-white rounded-md px-4 py-2 hover:bg-green-600 "
-          onClick={() => { }}
+          onClick={() => { setIsModalOpen(true); }}
         >Adicionar Membro</button>
-        </div>
+
         
+
+        </div>
+        {isModalOpen && (
+          <ModalAddMembro
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
         <table className="mx-auto w-11/12 md:w-3/4 lg:w-2/3 bg-white rounded-2xl shadow-xl border border-gray-200 table-auto border-separate border-spacing-x-6 border-spacing-y-3 text-sm">
           <thead>
             <tr>
